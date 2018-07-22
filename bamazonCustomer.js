@@ -19,9 +19,9 @@ connection.connect(function (err) {
     // if (err) throw err;
     connection.query("Select * FROM products", function (err, result) {
         if (err) throw err;
-        console.log("---------------------------");
+        console.log("-----------------------------------------------------");
         console.log(result);
-        console.log("------------------------");
+        console.log("------------------------------------------------------");
         start(result);
         // units();
        
@@ -32,11 +32,13 @@ connection.connect(function (err) {
 var query = connection.query
 
 function start(products) {
-// variables for product names and constructing an object//
+//constructing an object based on user choice//
     var productsObj = {};
     var productNames = [];
-//looping through products and pushing the product_name into an array//
+//looping through products//
     for (var i = 0; i < products.length; i++) {
+
+        //pushing the product name that is chosen into the productNames array//
         productNames.push(products[i].product_name);
         productsObj[products[i].product_name] = products[i];
     }
@@ -44,7 +46,7 @@ function start(products) {
         .prompt({
             name: "productList",
             type: "list",
-            message: "What is the ID of the item you would like to Purchase?",
+            message: "Select the itme you would like to Purchase?",
             choices: productNames,
         })
 
@@ -63,19 +65,21 @@ function units(product) {
             message: "How Many Would You Like to Purchase?",
         }])
         .then(function (answer) {
-            console.log(answer,[product.stock_quantity - answer.Quantity,product.id]);
+            //Subtracting purchased quantity from stock_quantity in mysql database//
+            console.log("You are puchasing:", answer,["Remaining Inventory:",product.stock_quantity - answer.Quantity,"Product ID #:", product.id]);
 
-            if (product.stock_quantity <= 0) {
+            //checks to see if there is enough inventory to fill the order//
+            if (product.stock_quantity < answer.Quantity) {
                 console.log("Insufficient Quantity")
-                // start();
+            
             }
-            //Add code that checks stock quantity before you minus the amount/  /
+            
           else 
             connection.query({ sql: "UPDATE products SET stock_quantity = ? WHERE id = ?", values: [product.stock_quantity - answer.Quantity,product.id] }, function (err, result) {
                 if (err) throw err;
-                console.log("---------------------------");
-                console.log (result);
-                console.log("------------------------");
+                console.log("---------------------------------------");
+                console.log ("Database Updated Results", result);
+                console.log("---------------------------------------");
                 // start(result);
                 // units();
                 connection.end();

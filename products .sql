@@ -7,7 +7,7 @@ CREATE TABLE products(
   id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(45) NULL,
   department_name VARCHAR(45) NULL,
-  price decimal(10,4) NULL,
+  price decimal(10,2) NULL,
   stock_quantity INT null,
   PRIMARY KEY (id)
 );
@@ -40,5 +40,3 @@ values ("Cold Beer", "Food and Beverage",12.99, 20);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 values ("SamSung TV", "Electronics",99.99, 50);
-
-

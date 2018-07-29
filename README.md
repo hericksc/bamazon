@@ -10,5 +10,14 @@ https://drive.google.com/file/d/1DjD5C_BH-ZsQlei045fiq7Bnbnnz3DQd/view
 
 Screen Shots:
 
-1.) Product List 
+1.) Product List: https://github.com/hericksc/bamazon/blob/master/Images/ProductList.JPG
+
+
+2.) Menu Choice: https://github.com/hericksc/bamazon/blob/master/Images/MenuChoice.JPG
+
+
+3.) Item Qty: https://github.com/hericksc/bamazon/blob/master/Images/ItemQuantity.JPG
+
+
+4.) Purchase Summary: https://github.com/hericksc/bamazon/blob/master/Images/PurchaseSummary.JPG
 
